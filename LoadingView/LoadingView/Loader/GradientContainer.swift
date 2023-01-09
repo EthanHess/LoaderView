@@ -34,7 +34,7 @@ class GradientContainer: UIView {
         
     }
     
-    //MARK: gradient colors need to be .cgColor otherwise they won't show, there's no type conflict error of any kind to tell you UIColor won't work
+    //MARK: gradient colors need to be .cgColor otherwise they won't show, there's no type conflict error of any kind to tell you UIColor won't work (so add extension with type check)
     
     //CGColor = A set of components that define a color, with a color space specifying how to interpret them.
     

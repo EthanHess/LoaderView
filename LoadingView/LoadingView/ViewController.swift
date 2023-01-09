@@ -86,6 +86,7 @@ class ViewController: UIViewController {
         } else {
             loader.startAnimation()
             loader.isHidden = false
+            addShadow(loader, color: .black)
         }
     }
     
@@ -99,6 +100,17 @@ class ViewController: UIViewController {
         loader.frame = loaderFrame()
         loader.isHidden = true
         view.addSubview(loader)
+    }
+    
+    //Make extension / move out of VC but just to see how it looks for now
+    fileprivate func addShadow(_ view: UIView, color: UIColor) {
+        let layer = view.layer
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = 0.5 //alpha
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 2
+        layer.shouldRasterize = true //rasterize means convert image into pixels (bitmap)
     }
     
     fileprivate func tableFrame() -> CGRect {

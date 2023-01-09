@@ -112,7 +112,9 @@ class LoadingView: UIView {
         
         self.backgroundColor = .darkGray //TODO customize, have option to do so
         self.layer.cornerRadius = 5
-        self.layer.masksToBounds = true //Also can customize these
+        //self.layer.masksToBounds = true //Also can customize these
+        
+        //MARK: maskToBounds prevents shadow from rendering
         
         self.layer.insertSublayer(gradientForBackground(), at: 0)
     }
