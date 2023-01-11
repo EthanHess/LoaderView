@@ -110,7 +110,9 @@ class ViewController: UIViewController {
         layer.shadowOpacity = 0.5 //alpha
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowRadius = 2
-        layer.shouldRasterize = true //rasterize means convert image into pixels (bitmap)
+        layer.shouldRasterize = false //rasterize means convert image into pixels (bitmap) (Causing blurrines here!, is really espensive)
+        
+        //A bitmap is an image file format which is used to store digital images. (a map of bits)
     }
     
     fileprivate func tableFrame() -> CGRect {
