@@ -32,11 +32,15 @@ enum PinwheelAnimationStyle {
 class LoadingView: UIView {
 
     //MARK: Subviews
+    
+    //W/O individual letter animation
     var loadingLabel : UILabel = {
         let ll = UILabel()
         ll.textAlignment = .center
         return ll
     }()
+    
+    var labelsSubviewArray : [UILabel]?
     
     var pinWheel : Pinwheel = {
         let pinwheel = Pinwheel()
@@ -95,6 +99,7 @@ class LoadingView: UIView {
     //MARK: View configure
     @objc fileprivate func configureViews() {
         pinWheel.frame = pinwheelStartFrame()
+        pinWheel.cornerRadius()
         addSubview(pinWheel)
         
         loadingLabel.frame = loadingLabelFrame()
@@ -103,6 +108,9 @@ class LoadingView: UIView {
         //All tests, eventually remove / be able to customize
         loadingLabel.textColor = .white
         loadingLabel.text = loadingLabelText
+        loadingLabel.isHidden = true //Test, want to see other sublabels, remove initialization of loading label if label letter aninmation turned on
+        
+        setupIndividualLabels()
         
         pinWheel.animationColor = .white
         pinWheel.animatedCircleConfiguration(countIndex: 0, totalCount: 10)
@@ -147,6 +155,48 @@ class LoadingView: UIView {
     
     func stopAnimation() {
         
+    }
+    
+    //TODO limit text length
+    func setupIndividualLabels() {
+        if labelsSubviewArray == nil {
+            labelsSubviewArray = []
+        } else {
+            labelsSubviewArray!.removeAll()
+        }
+        let curLabelText = self.loadingLabelText
+        let textArr = Array(curLabelText)
+        let labelWidth = 30
+        var xCoord = (Int(self.frame.size.width) / 2) - ((textArr.count * labelWidth) / 2) //place in center
+        let yCoord = Int(self.frame.size.height) //place offscreen / bottom
+        for i in 0..<textArr.count {
+            let curStr = textArr[i]
+            let label = UILabel(frame: CGRect(x: xCoord, y: yCoord, width: labelWidth, height: labelWidth))
+            label.backgroundColor = .clear
+            label.textColor = .white
+            label.textAlignment = .center
+            label.text = String(curStr)
+            addSubview(label)
+            labelsSubviewArray!.append(label)
+            xCoord += labelWidth
+        }
+        
+        animateInvidualLabels()
+    }
+    
+    //If we want to animate text, best to have a label for each char
+    fileprivate func animateInvidualLabels() {
+        guard let labelArr = labelsSubviewArray else {
+            return
+        }
+        var animationLaunchDelay = 0.0 //Hardcode for test
+        let duration = 3.0 / Double(labelArr.count) //3 seconds is current timer but is just hardcoded (update this)
+        for label in labelArr {
+            UIView.animate(withDuration: duration, delay: animationLaunchDelay) {
+                label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y - 60, width: label.frame.size.width, height: label.frame.size.height)
+                animationLaunchDelay += duration
+            }
+        }
     }
     
     //Changing colors, orbit etc.

@@ -24,6 +24,14 @@ class Pinwheel: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        //this will match center gradient to create border effect
+        
+        layer.borderColor = UIColor.green.cgColor //TODO make gradient w/ extension
+        layer.borderWidth = 3
+    }
+    
+    func cornerRadius() {
+        layer.cornerRadius = frame.size.width / 2
     }
     
     //MARK: Private / internal

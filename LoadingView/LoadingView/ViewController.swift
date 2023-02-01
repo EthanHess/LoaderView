@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         
         configureSubviews()
         
-        loaderStartStopHandler(true)
+        
         
         //perform(#selector(configureSubviews), with: nil, afterDelay: 0.25)
 
@@ -54,7 +54,17 @@ class ViewController: UIViewController {
 //            }
 //        }
 
+        fireLoaderTest()
+    }
+    
+    fileprivate func fireLoaderTest() {
+        loaderStartStopHandler(true)
         load(false)
+    }
+    
+    //Test
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fireLoaderTest()
     }
     
     //MARK: The problem: while scrolling to the bottom of a large list (YouTube playlist etc.), current pagination methods load as you scroll, but ideally should skip the middle part if the user scrolls fast enough (i.e. they want to scroll to the bottom of a list quickly)
