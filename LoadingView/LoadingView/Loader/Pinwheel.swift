@@ -26,12 +26,13 @@ class Pinwheel: UIView {
         
         //this will match center gradient to create border effect
         
-        layer.borderColor = UIColor.green.cgColor //TODO make gradient w/ extension
-        layer.borderWidth = 3
     }
     
     func cornerRadius() {
-        layer.cornerRadius = frame.size.width / 2
+        let halfWidth = frame.size.width / 2
+        layer.cornerRadius = halfWidth
+        clipsToBounds = true
+        addGradient([UIColor.white.cgColor, UIColor.green.cgColor], lineWidth: 3, radius: halfWidth)
     }
     
     //MARK: Private / internal
@@ -124,5 +125,22 @@ class Pinwheel: UIView {
 extension Pinwheel: DidFinishGradientAnimation {
     func finishedAnimation() {
         
+    }
+}
+
+extension UIView {
+    func addGradient(_ colors: [CGColor], lineWidth: CGFloat, radius: CGFloat) {
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(origin: CGPoint.zero, size: self.frame.size)
+        gradient.colors = colors
+
+        let shape = CAShapeLayer()
+        shape.lineWidth = lineWidth
+        shape.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath
+        shape.strokeColor = UIColor.black.cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        gradient.mask = shape
+
+        self.layer.addSublayer(gradient)
     }
 }

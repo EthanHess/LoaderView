@@ -92,7 +92,9 @@ class ViewController: UIViewController {
     fileprivate func loaderStartStopHandler(_ start: Bool) {
         if start == false {
             self.loader.stopAnimation()
-            self.loader.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.loader.isHidden = true
+            }
         } else {
             loader.startAnimation()
             loader.isHidden = false

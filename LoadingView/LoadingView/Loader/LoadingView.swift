@@ -176,6 +176,7 @@ class LoadingView: UIView {
             label.textColor = .white
             label.textAlignment = .center
             label.text = String(curStr)
+            label.alpha = 0
             addSubview(label)
             labelsSubviewArray!.append(label)
             xCoord += labelWidth
@@ -193,6 +194,7 @@ class LoadingView: UIView {
         let duration = 3.0 / Double(labelArr.count) //3 seconds is current timer but is just hardcoded (update this)
         for label in labelArr {
             UIView.animate(withDuration: duration, delay: animationLaunchDelay) {
+                label.alpha = 1
                 label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y - 60, width: label.frame.size.width, height: label.frame.size.height)
                 animationLaunchDelay += duration
             }
