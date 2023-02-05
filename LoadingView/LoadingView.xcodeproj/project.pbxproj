@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270E39DD298F2827009F0AC2 /* DotsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E39DC298F2827009F0AC2 /* DotsContainer.swift */; };
 		274E95822874CB4D0064C2B8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E95812874CB4D0064C2B8 /* DataManager.swift */; };
 		279F5F91286BBDAF00F67E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F5F90286BBDAF00F67E18 /* AppDelegate.swift */; };
 		279F5F93286BBDAF00F67E18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F5F92286BBDAF00F67E18 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270E39DC298F2827009F0AC2 /* DotsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsContainer.swift; sourceTree = "<group>"; };
 		274E95812874CB4D0064C2B8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		279F5F8D286BBDAF00F67E18 /* LoadingView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoadingView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279F5F90286BBDAF00F67E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				279F5FC0286BBDD900F67E18 /* LoadingView.swift */,
 				279F5FC2286BC05400F67E18 /* Pinwheel.swift */,
 				27B889C2296CC2E0003C7E89 /* GradientContainer.swift */,
+				270E39DC298F2827009F0AC2 /* DotsContainer.swift */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				279F5F95286BBDAF00F67E18 /* ViewController.swift in Sources */,
 				274E95822874CB4D0064C2B8 /* DataManager.swift in Sources */,
 				279F5FC1286BBDD900F67E18 /* LoadingView.swift in Sources */,
+				270E39DD298F2827009F0AC2 /* DotsContainer.swift in Sources */,
 				27B889C3296CC2E0003C7E89 /* GradientContainer.swift in Sources */,
 				279F5F91286BBDAF00F67E18 /* AppDelegate.swift in Sources */,
 				279F5F93286BBDAF00F67E18 /* SceneDelegate.swift in Sources */,

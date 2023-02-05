@@ -47,6 +47,11 @@ class LoadingView: UIView {
         return pinwheel
     }()
     
+    lazy var dotsContainer : DotsContainer = {
+        let dc = DotsContainer()
+        return dc
+    }()
+    
     var isAnimating = false
     
     //MARK: UI Properties (settable)
@@ -111,6 +116,7 @@ class LoadingView: UIView {
         loadingLabel.isHidden = true //Test, want to see other sublabels, remove initialization of loading label if label letter aninmation turned on
         
         setupIndividualLabels()
+        addDotContainer()
         
         pinWheel.animationColor = .white
         pinWheel.animatedCircleConfiguration(countIndex: 0, totalCount: 10)
@@ -155,6 +161,20 @@ class LoadingView: UIView {
     
     func stopAnimation() {
         
+    }
+    
+    //MARK, try dots but also ovals / elongated could be cool
+    func addDotContainer() {
+        //In this config, loading labels start offscreen then animate up to y: 60, this container will sit right above the final coords of loading labels
+
+        let yCoord = frame.size.height - 120
+        let height = 50
+        let xCoord = frame.size.width / 4
+        
+        dotsContainer = DotsContainer(frame: CGRectMake(xCoord, yCoord, xCoord * 2, CGFloat(height)))
+        addSubview(dotsContainer)
+        
+        dotsContainer.addDots(3, oval: false)
     }
     
     //TODO limit text length
