@@ -20,17 +20,23 @@ class DotsContainer: UIView {
         //Default to 3 and circle, TODO factor in above variable(s)
         let numSpaces = count + 1 //If 3, there will be four spaces, on each side + 2 between dots
         var xCoord = frame.size.width / CGFloat(count + numSpaces)
+        let originalXCoord = xCoord //For reference as above variable increments / mutates
         let frameHeight = frame.size.height
         for i in 0..<count {
             //Dots will start at zero
             let dotFrame = CGRectMake(xCoord + (frameHeight / 2), frameHeight / 2, 0, 0)
             let dotView = UIView(frame: dotFrame)
             dotView.backgroundColor = .systemGreen // TODO gradient
+            dotView.addShadow(.white)
             addSubview(dotView)
             dotArray.append(dotView)
             
             //Factor in 0, 2 are on top of each other
-            xCoord += (CGFloat(i * 2) * xCoord)
+            if i == 0 {
+                xCoord += (CGFloat(2 * originalXCoord))
+            } else {
+                xCoord += CGFloat(originalXCoord * 2)
+            }
         }
         
         animateDots(count)

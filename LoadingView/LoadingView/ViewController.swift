@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         } else {
             loader.startAnimation()
             loader.isHidden = false
-            addShadow(loader, color: .black)
+            loader.addShadow(.black)
         }
     }
     
@@ -112,19 +112,6 @@ class ViewController: UIViewController {
         loader.frame = loaderFrame()
         loader.isHidden = true
         view.addSubview(loader)
-    }
-    
-    //Make extension / move out of VC but just to see how it looks for now
-    fileprivate func addShadow(_ view: UIView, color: UIColor) {
-        let layer = view.layer
-        layer.masksToBounds = false
-        layer.shadowColor = color.cgColor
-        layer.shadowOpacity = 0.5 //alpha
-        layer.shadowOffset = CGSize(width: 1, height: 1)
-        layer.shadowRadius = 2
-        layer.shouldRasterize = false //rasterize means convert image into pixels (bitmap) (Causing blurrines here!, is really espensive)
-        
-        //A bitmap is an image file format which is used to store digital images. (a map of bits)
     }
     
     fileprivate func tableFrame() -> CGRect {
