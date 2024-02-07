@@ -23,8 +23,9 @@ class ViewController: UIViewController {
     
     var contentArray : [SomeObject] = []
     
-    //MARK: Dependendy injection
-    let dataManagerDI : DataManager = {
+    //MARK: Dependendy injection = if we initialize somewhere else and pass in
+    //var dataManagerDI = DataManager?
+    let dataManager : DataManager = {
         let dm = DataManager()
         return dm
     }()
@@ -78,7 +79,8 @@ class ViewController: UIViewController {
         } else {
             //TODO Eventually will have upper / lower bounds
             DispatchQueue.global(qos: .background).async {
-                DataManager.loadLargeDataSet { arr in
+                DataManager.loadLargeDataSet { [weak self] arr in //weakify when escaping / mutual ownership
+                    guard let self else { return }
                     DispatchQueue.main.async {
                         self.loaderStartStopHandler(false)
                         self.contentArray = arr

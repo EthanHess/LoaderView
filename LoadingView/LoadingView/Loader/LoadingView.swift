@@ -131,6 +131,9 @@ class LoadingView: UIView {
         //MARK: maskToBounds prevents shadow from rendering
         
         self.layer.insertSublayer(gradientForBackground(), at: 0)
+        
+        //TODO fix this
+        //self.addBackgroundGradient(true)
     }
     
     fileprivate func gradientForBackground() -> CAGradientLayer {

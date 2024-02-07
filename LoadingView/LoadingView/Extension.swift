@@ -19,4 +19,26 @@ extension UIView {
         
         //A bitmap is an image file format which is used to store digital images. (a map of bits)
     }
+    
+    func addBackgroundGradient(_ add: Bool) {
+        if add == true {
+            let gradient = CAGradientLayer()
+            gradient.frame = self.frame
+            gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor, UIColor.white.cgColor]
+            gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+            gradient.locations = [0.0, 0.5, 1.0]
+            self.layer.addSublayer(gradient)
+                
+            let animation = CABasicAnimation(keyPath: "transform.translation.x")
+            animation.fromValue = -self.frame.width
+            animation.toValue = self.frame.width
+            animation.duration = 1.5
+            animation.repeatCount = .infinity
+                
+            gradient.add(animation, forKey: "loadingAnimation")
+        } else { //Remove when loading is done
+                
+        }
+    }
 }
